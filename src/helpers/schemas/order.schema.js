@@ -9,13 +9,14 @@ const orderSchema = Joi.object({
             'number.base': 'Product must be a number',
             'any.required': 'Product is required',
         }),
-        quantity: Joi.number().greater(0).required().messages({
+        quantityTaken: Joi.number().greater(0).required().messages({
             'number.base': 'Quantity must be a number',
             'number.greater': 'Quantity must be greater than 0',
             'any.required': 'Quantity is required',
         }),
-    })).required().messages({
+    })).required().min(1).messages({
         'array.base': 'Products must be an array',
+        'array.min': 'Products must be greater than 1',
         'any.required': 'Products is required',
     }),
 });

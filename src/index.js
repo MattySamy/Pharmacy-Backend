@@ -5,13 +5,16 @@ import OrderRouter from './controllers/order.controller.js';
 import logger from './helpers/middlewares/logger.js';
 import dotenv from 'dotenv';
 import errorHandler from './helpers/middlewares/errorHandler.js';
+import cors from 'cors';
 dotenv.config();
 const app = express();
-
 // -- Middleware --
 app.use(express.json());
 app.use(logger);
-
+app.use(cors({
+    origin: 'http://127.0.0.1/5500',
+    methods: ['GET', 'POST'],
+}));
 // -- Routes --
 app.use('/user', userRouter);
 app.use('/product', ProductRouter);
